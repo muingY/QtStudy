@@ -19,6 +19,10 @@ public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
 
+public slots:
+        void Date1Fixed(QDate date);
+        void Date2Fixed(QDate date);
+
 private:
     Ui::Widget *ui;
 

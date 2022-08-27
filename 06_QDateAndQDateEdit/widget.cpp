@@ -1,6 +1,8 @@
 #include "widget.h"
 #include "ui_widget.h"
 
+#include <QDebug>
+
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Widget)
@@ -14,9 +16,11 @@ Widget::Widget(QWidget *parent)
 
     dateEdit[0] = new QDateEdit(date[0], this);
     dateEdit[0]->setGeometry(10, 10, 140, 40);
+    connect(dateEdit[0], SIGNAL(dateChanged(QDate)), SLOT(Date1Fixed(QDate)));
 
     dateEdit[1] = new QDateEdit(date[1], this);
     dateEdit[1]->setGeometry(10, 50, 140, 40);
+    connect(dateEdit[1], SIGNAL(dateChanged(QDate)), SLOT(Date2Fixed(QDate)));
 
     dateLabel[0] = new QLabel(date[0].toString(Qt::ISODate), this);
     dateLabel[0]->setGeometry(10, 300, 200, 30);
@@ -32,4 +36,14 @@ Widget::~Widget()
     delete dateLabel[0];
     delete dateLabel[1];
     delete ui;
+}
+
+void Widget::Date1Fixed(QDate date)
+{
+    dateLabel[0]->setText(date.toString(Qt::ISODate));
+}
+
+void Widget::Date2Fixed(QDate date)
+{
+    dateLabel[1]->setText(date.toString(Qt::ISODate));
 }
