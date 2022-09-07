@@ -20,5 +20,8 @@ public:
 
 private:
     Ui::Widget *ui;
+
+    QLabel* label[2];
+    QLCDNumber* numberLCD[2];
 };
 #endif // WIDGET_H
